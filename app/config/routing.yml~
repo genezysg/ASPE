@@ -4,4 +4,4 @@ app:
 
 acme_website:
     resource: "@AcmeDemoBundle/Resources/config/routing.yml"
-    prefix: /
+    prefix:	/

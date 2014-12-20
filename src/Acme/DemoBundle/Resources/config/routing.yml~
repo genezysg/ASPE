@@ -12,5 +12,5 @@ _demo:
     prefix:   /demo
 
 random:
-    path: /random/{limit}
-    defaults: { _controller: AcmeDemoBundle:Random:index }
+	path:	/random/{limit}
+	defaults: { _controller: AcmeDemoBundle:Random:index }
