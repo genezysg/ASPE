@@ -1,0 +1,5 @@
+Rode os scripts na seguinte ordem:
+1. esquema-versão-*.sql
+2. carga-dados-basicos.sql
+3. carga-dados-massa-teste.sql
+4. esquema-trigger-validacao-*.sql
