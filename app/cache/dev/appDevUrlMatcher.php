@@ -136,6 +136,26 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
+        // create
+        if (0 === strpos($pathinfo, '/create') && preg_match('#^/create/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'create')), array (  '_controller' => 'AppBundle\\Controller\\DefaultController::createAction',));
+        }
+
+        // fetch
+        if (0 === strpos($pathinfo, '/fetch') && preg_match('#^/fetch/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fetch')), array (  '_controller' => 'AppBundle\\Controller\\DefaultController::fetchAction',));
+        }
+
+        // update
+        if (0 === strpos($pathinfo, '/update') && preg_match('#^/update/(?P<id>[^/]++)/(?P<nome>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'update')), array (  '_controller' => 'AppBundle\\Controller\\DefaultController::updateAction',));
+        }
+
+        // remove
+        if (0 === strpos($pathinfo, '/remove') && preg_match('#^/remove/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'remove')), array (  '_controller' => 'AppBundle\\Controller\\DefaultController::removeAction',));
+        }
+
         // default
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'default')), array (  '_controller' => 'AppBundle\\Controller\\HelloController::indexAction',));

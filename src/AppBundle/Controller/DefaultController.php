@@ -7,21 +7,72 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Product;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
-{
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction()
-    {
-        return $this->render('default/index.html.twig');
-    }
-    public function createAction(){
-    	$product = new Product();
-    	$product->setName("Sabao");
-    	$product->setPrice("4.50");
-    	$product->setDescription("Sabao para lavar roupa");
-    	
-    	
-    }
+class DefaultController extends Controller {
+	/**
+	 * @Route("/", name="homepage")
+	 */
+	public function indexAction() {
+		return $this->render ( 'default/index.html.twig' );
+	}
+	
+	/**
+	 * @Route("/create/{name}", name="create")
+	 */
+	public function createAction($name) {
+		$product = new Product ();
+		$product->setName ( $name );
+		$product->setPrice ( "4.50" );
+		$product->setDescription ( "Sabao para lavar roupa" );
+		
+		$em = $this->getDoctrine ()->getManager ();
+		
+		$em->persist ( $product );
+		$em->flush ();
+		
+		return new Response ( 'Novo produto Criado. Codigo: ' . $product->getId () );
+	}
+	
+	/**
+	 * @Route("/fetch/{id}", name="fetch")
+	 */
+	public function fetchAction($id) {
+		$product = new Product ();
+		$product = $this->getDoctrine ()->getRepository ( 'AppBundle:Product' )->find ( $id );
+		
+		if (! $product)
+			throw $this->createNotFoundException ( 'Produto nao encontrado: ' . $id );
+		else
+			return new Response ( 'Produto encontrado:<br> Nome: ' . $product->getName () . '<br>Preço: ' . $product->getPrice () . '<br>Descrição: ' . $product->getDescription () );
+	}
+	/**	 
+	 * @Route("/update/{id}/{nome}", name="update")
+	 */
+	public function updateAction($id, $nome) {
+		$em = $this->getDoctrine()->getManager();
+		$product = $em->getRepository('AppBundle:Product')->find($id);
+		
+		if (!$product)
+			throw $this->createNotFoundException ( 'Produto nao encontrado: ' . $id );
+		
+		if ($nome)
+			$product->setName($nome);
+		
+		$em->flush();
+		return new Response ( 'Dados do produto atualizado ');
+	}
+	/**
+	 * @Route("/remove/{id}", name="remove")
+	 */
+	public function removeAction($id) {
+		$em = $this->getDoctrine()->getManager();
+		$product = $em->getRepository('AppBundle:Product')->find($id);
+		
+		if (!$product)
+			throw $this->createNotFoundException ( 'Produto nao encontrado: ' . $id );
+		
+		$em->remove($product);		
+		$em->flush();
+		
+		return new Response ('Produto Removido');
+	}
 }
