@@ -1,7 +1,13 @@
 app:
     resource: @AppBundle/Controller/
     type:     annotation
-
+model:
+    resource: @AppBundle/Entity/
+    type:     annotation
+default:
+  path :      /hello/{name}
+  defaults:   { _controller: AppBundle:Hello:index }
+  
 acme_website:
     resource: "@AcmeDemoBundle/Resources/config/routing.yml"
     prefix: /

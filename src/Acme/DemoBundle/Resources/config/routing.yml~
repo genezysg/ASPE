@@ -14,3 +14,7 @@ _demo:
 random:
 	path:	/random/{limit}
 	defaults: { _controller: AcmeDemoBundle:Random:index }
+	
+hello:
+    path: /hello/{name}
+    defaults: { _controller: AcmeDemoBundle:Hello:index }
