@@ -1,6 +1,6 @@
 <?php
 
-/* base.html.twig */
+/* ::base.html.twig */
 class __TwigTemplate_c5d50ac811cd0dcebab6b10e9a65477481c312b407494a793269fb787c2c1174 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -72,7 +72,7 @@ class __TwigTemplate_c5d50ac811cd0dcebab6b10e9a65477481c312b407494a793269fb787c2
 
     public function getTemplateName()
     {
-        return "base.html.twig";
+        return "::base.html.twig";
     }
 
     public function isTraitable()

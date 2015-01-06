@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Product;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\Bundle\DoctrineBundle\Registry;
+use Doctrine\ORM\Mapping as ORM;
 
 class DefaultController extends Controller {
 	/**
@@ -74,5 +76,21 @@ class DefaultController extends Controller {
 		$em->flush();
 		
 		return new Response ('Produto Removido');
+	}
+	/**
+	 * @Route("/fetch/limitprice/{price}")
+	 */
+	public function fetchByPriceLimit($price){
+		$repository = new Registry();
+		$repository = $this->getDoctrine()
+			->getRepository('AppBundle:Product');
+		
+		$query = $repository->createQueryBuilder('p')
+			->where('p.price < :price')
+			->setParameter('price',$price)
+			->orderBy('p.price','ASC')
+			->getQuery();
+		
+		$products = $query->getResult();
 	}
 }

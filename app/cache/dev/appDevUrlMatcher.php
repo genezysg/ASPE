@@ -127,6 +127,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // aspe_default_index
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'aspe_default_index')), array (  '_controller' => 'ASPEBundle\\Controller\\DefaultController::indexAction',));
+        }
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
@@ -156,17 +161,102 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'remove')), array (  '_controller' => 'AppBundle\\Controller\\DefaultController::removeAction',));
         }
 
+        // app_default_fetchbypricelimit
+        if (0 === strpos($pathinfo, '/fetch/limitprice') && preg_match('#^/fetch/limitprice/(?P<price>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_default_fetchbypricelimit')), array (  '_controller' => 'AppBundle\\Controller\\DefaultController::fetchByPriceLimit',));
+        }
+
+        if (0 === strpos($pathinfo, '/product')) {
+            // product
+            if (rtrim($pathinfo, '/') === '/product') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_product;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'product');
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\ProductController::indexAction',  '_route' => 'product',);
+            }
+            not_product:
+
+            // product_create
+            if ($pathinfo === '/product/') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_product_create;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\ProductController::createAction',  '_route' => 'product_create',);
+            }
+            not_product_create:
+
+            // product_new
+            if ($pathinfo === '/product/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_product_new;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\ProductController::newAction',  '_route' => 'product_new',);
+            }
+            not_product_new:
+
+            // product_show
+            if (preg_match('#^/product/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_product_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'product_show')), array (  '_controller' => 'AppBundle\\Controller\\ProductController::showAction',));
+            }
+            not_product_show:
+
+            // product_edit
+            if (preg_match('#^/product/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_product_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'product_edit')), array (  '_controller' => 'AppBundle\\Controller\\ProductController::editAction',));
+            }
+            not_product_edit:
+
+            // product_update
+            if (preg_match('#^/product/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PUT') {
+                    $allow[] = 'PUT';
+                    goto not_product_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'product_update')), array (  '_controller' => 'AppBundle\\Controller\\ProductController::updateAction',));
+            }
+            not_product_update:
+
+            // product_delete
+            if (preg_match('#^/product/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_product_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'product_delete')), array (  '_controller' => 'AppBundle\\Controller\\ProductController::deleteAction',));
+            }
+            not_product_delete:
+
+        }
+
         // default
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'default')), array (  '_controller' => 'AppBundle\\Controller\\HelloController::indexAction',));
         }
 
         // _welcome
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', '_welcome');
-            }
-
+        if ($pathinfo === '/welcome') {
             return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',  '_route' => '_welcome',);
         }
 
