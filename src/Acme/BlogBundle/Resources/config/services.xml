@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <parameters>
+        <parameter key="acme_blog.page.handler.class">Acme\BlogBundle\Handler\PageHandler</parameter>
+        <parameter key="acme_blog.page.class">Acme\BlogBundle\Entity\Page</parameter>        
+        
+        <parameter key="acme_blog.usuario.handler.class">Acme\BlogBundle\Handler\UsuarioHandler</parameter>
+    	<parameter key="acme_blog.usuario.class">Acme\BlogBundle\Entity\Usuario</parameter>
+    	
+    	<parameter key="acme_blog.perfil.handler.class">Acme\BlogBundle\Handler\PerfilHandler</parameter>
+    	<parameter key="acme_blog.perfil.class">Acme\BlogBundle\Entity\Perfil</parameter>
+    </parameters>    
+
+    <services>
+        <service id="acme_blog.page.handler" class="%acme_blog.page.handler.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%acme_blog.page.class%</argument>
+            <argument type="service" id="form.factory"></argument>
+        </service>
+        
+        <service id="acme_blog.usuario.handler" class="%acme_blog.usuario.handler.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%acme_blog.usuario.class%</argument>
+            <argument type="service" id="form.factory"></argument>
+        </service>
+        
+        <service id="acme_blog.perfil.handler" class="%acme_blog.perfil.handler.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%acme_blog.perfil.class%</argument>
+            <argument type="service" id="form.factory"></argument>
+        </service>                            
+    </services>
+
+</container>
+

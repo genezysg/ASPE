@@ -1,0 +1,17 @@
+acme_blog_page:
+    type: rest
+    prefix: /v1
+    resource: Acme\BlogBundle\Controller\PageController
+    name_prefix:  api_1_ # naming collision
+    
+acme_blog_usuario:
+    type: rest
+    prefix: /v1
+    resource: Acme\BlogBundle\Controller\UsuarioController
+    name_prefix:  api_1_
+    
+acme_blog_perfil:
+    type: rest
+    prefix: /v1
+    resource: Acme\BlogBundle\Controller\PerfilController
+    name_prefix:  api_1_

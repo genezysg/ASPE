@@ -1,0 +1,18 @@
+{% block content %}
+    <h1 class="title">{{ 'Lista de Usuarios'|trans({}, 'AcmeBlogBundle') }}</h1>
+
+    <ul id="usuario-list">
+        {% for usuario in usuarios %}
+            <li>
+                <a href="{{ path('api_1_get_usuario', {'matricula': usuario.matricula}) }}">{{ usuario.nome }}</a>
+                {#[<a href="{{ path('api_1_edit_pages', {'id': page.id}) }}">{{ 'page.edit.link'|trans({}, 'AcmeBlogBundle') }}</a>]#}
+                {#[<a href="{{ path('api_1_remove_pages', {'id': page.id}) }}">{{ 'page.remove.link'|trans({}, 'AcmeBlogBundle') }}</a>]#}
+            </li>
+        {% else %}
+            <li>{{ 'Usuario.list.empty'|trans({}, 'AcmeBlogBundle') }}</li>
+        {% endfor %}
+    </ul>
+    <p>
+        <a href="{{ path('api_1_new_usuario') }}">{{ 'usuario.new.link'|trans({}, 'AcmeBlogBundle') }}</a>
+    </p>
+{% endblock %}

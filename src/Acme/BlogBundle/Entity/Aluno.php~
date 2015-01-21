@@ -1,0 +1,54 @@
+<?php
+namespace Acme\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="aluno")
+ */
+
+class Aluno{
+	/**
+	 * @ORM\Column(type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	protected $matricula;
+	/**
+	 * @ORM\Column(length=100)
+	 */
+	protected $nome;
+	/**	
+	 * @ORM\Column(type="date", name="data_nasc")
+	 */
+	protected $dataNasc;
+	/**
+	 * @ORM\Column(length=1)
+	 */
+	protected $sexo;
+	/**	
+	 * @ORM\Column(length=11)
+	 */
+	protected $cpf;
+	/**
+	 * @ORM\Column(length=100)
+	 */
+	protected $nome_mae;
+	/**
+	 * @ORM\Column(length=100)
+	 */
+	protected $nome_pai;
+	/**
+	 * @ORM\Column(length=100)
+	 */
+	protected $email;
+	/** 
+	 * @ORM\Column(length=8)
+	 */
+	protected $telefone;
+	/**
+	 * @ORM\Column(length=9)	
+	 */
+	protected $telefone_celular;
+}
