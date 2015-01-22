@@ -17,6 +17,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Acme\BlogBundle\Exception\InvalidFormException;
 use Acme\BlogBundle\Form\PageType;
 use Acme\BlogBundle\Model\PageInterface;
+use Acme\BlogBundle\Entity\Page;
 
 
 class PageController extends FOSRestController
@@ -79,7 +80,45 @@ class PageController extends FOSRestController
 
         return $page;
     }
-
+    /**
+     * Delete a Page.
+     *
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Delete a Page",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the page is not found"
+     *   }
+     * )
+     * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to start listing pages.")
+     * @Annotations\QueryParam(name="limit", requirements="\d+", default="5", description="How many pages to return.")
+     * 
+     * @Annotations\View(templateVar="page")
+     *
+     * @param int     $id      the page id
+     * @param Request               $request      the request object
+     * @param ParamFetcherInterface $paramFetcher param fetcher service
+     *
+     * @return array
+     *
+     * @throws NotFoundHttpException when page not exist
+     * 
+     * 
+     */
+    public function deletePageAction($id, Request $request, ParamFetcherInterface $paramFetcher)
+    {
+    	if ($page = $this->container->get('acme_blog.page.handler')->get($id)) {
+    		$statusCode = Codes::HTTP_CREATED;
+    		$this->container->get('acme_blog.page.handler')->delete($page);
+    	} else
+    		$statusCode = Codes::HTTP_NO_CONTENT;    	
+    	$routeOptions = array(
+    			'_format' => $request->get('_format')
+    	);
+    	return $this->routeRedirectView('api_1_get_pages', $routeOptions, $statusCode);
+    }
     /**
      * Presents the form to use to create a new page.
      *
@@ -242,7 +281,7 @@ class PageController extends FOSRestController
             return $exception->getForm();
         }
     }
-
+    
     /**
      * Fetch a Page or throw an 404 Exception.
      *

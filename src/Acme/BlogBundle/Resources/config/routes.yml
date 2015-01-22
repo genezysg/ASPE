@@ -3,6 +3,10 @@ acme_blog_page:
     prefix: /v1
     resource: Acme\BlogBundle\Controller\PageController
     name_prefix:  api_1_ # naming collision
+
+acme_blog_page_delete:
+    pattern:  /v1/pages/delete/{id}.{_format}        
+    defaults: { _controller: Acme\BlogBundle\Controller\PageController::deletePageAction, _format: html }
     
 acme_blog_usuario:
     type: rest

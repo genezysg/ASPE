@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Acme\BlogBundle\Model\PageInterface;
 use Acme\BlogBundle\Form\PageType;
 use Acme\BlogBundle\Exception\InvalidFormException;
+use Acme\BlogBundle\Entity\Page;
 
 class PageHandler implements PageHandlerInterface
 {
@@ -87,7 +88,26 @@ class PageHandler implements PageHandlerInterface
     {
         return $this->processForm($page, $parameters, 'PATCH');
     }
-
+    /**
+     * Delete a page
+     *
+     * @api
+     *
+     * @param mixed $id
+     *
+     */
+    public function delete(Page $page)
+    {
+    	return $this->processDelete($page);
+    }
+    
+    private function processDelete(Page $page)
+    {
+    	$this->om->remove($page);
+    	$this->om->flush($page);
+    
+    	return $page;
+    }
     /**
      * Processes the form.
      *
@@ -119,5 +139,4 @@ class PageHandler implements PageHandlerInterface
     {
         return new $this->entityClass();
     }
-
 }

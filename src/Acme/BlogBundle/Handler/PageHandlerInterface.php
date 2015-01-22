@@ -3,6 +3,7 @@
 namespace Acme\BlogBundle\Handler;
 
 use Acme\BlogBundle\Model\PageInterface;
+use Acme\BlogBundle\Entity\Page;
 
 interface PageHandlerInterface
 {
@@ -36,8 +37,16 @@ interface PageHandlerInterface
      *
      * @return PageInterface
      */
+    
     public function post(array $parameters);
-
+    
+    /**
+     * Delete a Page.
+     *
+     * @param PageInterface $page
+     *
+     */
+    public function delete(Page $page);
     /**
      * Edit a Page.
      *

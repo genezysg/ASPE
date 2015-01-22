@@ -6,7 +6,7 @@
             <li>
                 <a href="{{ path('api_1_get_page', {'id': page.id}) }}">{{ page.title }}</a>
                 {#[<a href="{{ path('api_1_edit_pages', {'id': page.id}) }}">{{ 'page.edit.link'|trans({}, 'AcmeBlogBundle') }}</a>]#}
-                {#[<a href="{{ path('api_1_remove_pages', {'id': page.id}) }}">{{ 'page.remove.link'|trans({}, 'AcmeBlogBundle') }}</a>]#}
+                [<a href="{{ path('acme_blog_page_delete', {'id': page.id}) }}">{{ 'page.delete.link'|trans({}, 'AcmeBlogBundle') }}</a>}
             </li>
         {% else %}
             <li>{{ 'page.list.empty'|trans({}, 'AcmeBlogBundle') }}</li>
