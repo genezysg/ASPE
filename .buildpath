@@ -1,35 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
-	<buildpathentry kind="src" path="vendor/doctrine/inflector/lib"/>
-	<buildpathentry kind="src" path="vendor/twig/extensions/lib"/>
-	<buildpathentry kind="src" path="vendor/symfony/symfony/src/Symfony/Component/Intl/Resources/stubs"/>
+	<buildpathentry kind="src" path="vendor/phpoption/phpoption/src"/>
 	<buildpathentry kind="src" path="vendor/swiftmailer/swiftmailer/lib"/>
-	<buildpathentry kind="src" path="vendor/sensiolabs/security-checker"/>
 	<buildpathentry kind="src" path="src"/>
-	<buildpathentry kind="src" path="vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Resources/stubs"/>
-	<buildpathentry kind="src" path="vendor/doctrine/doctrine-cache-bundle"/>
-	<buildpathentry kind="src" path="vendor/doctrine/orm/lib"/>
-	<buildpathentry kind="src" path="vendor/sensio/distribution-bundle"/>
-	<buildpathentry kind="src" path="vendor/doctrine/common/lib"/>
+	<buildpathentry kind="src" path="vendor/guzzle/plugin"/>
+	<buildpathentry kind="src" path="vendor/guzzle/http"/>
+	<buildpathentry kind="src" path="vendor/nelmio/api-doc-bundle"/>
 	<buildpathentry kind="src" path="vendor/monolog/monolog/src/Monolog"/>
 	<buildpathentry kind="src" path="vendor/symfony/assetic-bundle"/>
-	<buildpathentry excluding="Symfony/Component/HttpFoundation/Resources/stubs/|Symfony/Component/Intl/Resources/stubs/" kind="src" path="vendor/symfony/symfony/src"/>
-	<buildpathentry kind="src" path="vendor/symfony/monolog-bundle"/>
-	<buildpathentry kind="src" path="vendor/doctrine/doctrine-bundle"/>
+	<buildpathentry kind="src" path="vendor/doctrine/data-fixtures/lib"/>
 	<buildpathentry kind="src" path="vendor/sensio/framework-extra-bundle"/>
-	<buildpathentry kind="src" path="vendor/doctrine/annotations/lib"/>
-	<buildpathentry kind="src" path="vendor/doctrine/collections/lib"/>
 	<buildpathentry kind="src" path="vendor/kriswallsmith/assetic/src"/>
 	<buildpathentry kind="src" path="vendor/psr/log"/>
-	<buildpathentry kind="src" path="vendor/doctrine/cache/lib"/>
-	<buildpathentry kind="src" path="vendor/twig/twig/lib"/>
-	<buildpathentry kind="src" path="vendor/symfony/swiftmailer-bundle"/>
-	<buildpathentry kind="src" path="vendor/sensio/generator-bundle"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-text-template/Text"/>
+	<buildpathentry kind="src" path="vendor/willdurand/jsonp-callback-validator/src"/>
+	<buildpathentry kind="src" path="vendor/jms/serializer/src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-code-coverage/PHP"/>
+	<buildpathentry kind="src" path="vendor/jms/serializer-bundle"/>
+	<buildpathentry kind="src" path="vendor/willdurand/rest-extra-bundle"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 	<buildpathentry kind="src" path="vendor/composer"/>
 	<buildpathentry kind="src" path="vendor/doctrine/dbal/lib"/>
 	<buildpathentry kind="src" path="vendor/doctrine/lexer/lib"/>
+	<buildpathentry kind="src" path="vendor/doctrine/inflector/lib"/>
+	<buildpathentry kind="src" path="vendor/twig/extensions/lib"/>
+	<buildpathentry kind="src" path="vendor/liip/functional-test-bundle"/>
+	<buildpathentry kind="src" path="vendor/guzzle/common"/>
+	<buildpathentry kind="src" path="vendor/phpunit/phpunit/PHPUnit"/>
+	<buildpathentry kind="src" path="vendor/phpunit/phpunit-mock-objects/PHPUnit"/>
+	<buildpathentry kind="src" path="vendor/symfony/symfony/src/Symfony/Component/Intl/Resources/stubs"/>
+	<buildpathentry kind="src" path="vendor/friendsofsymfony/rest-bundle"/>
+	<buildpathentry kind="src" path="vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Resources/stubs"/>
+	<buildpathentry kind="src" path="vendor/jms/parser-lib/src"/>
+	<buildpathentry kind="src" path="vendor/michelf/php-markdown"/>
+	<buildpathentry kind="src" path="vendor/doctrine/orm/lib"/>
+	<buildpathentry kind="src" path="vendor/doctrine/doctrine-fixtures-bundle"/>
+	<buildpathentry kind="src" path="vendor/sensio/distribution-bundle"/>
+	<buildpathentry kind="src" path="vendor/doctrine/common/lib"/>
+	<buildpathentry kind="src" path="vendor/jms/metadata/src"/>
+	<buildpathentry excluding="Symfony/Component/HttpFoundation/Resources/stubs/|Symfony/Component/Intl/Resources/stubs/" kind="src" path="vendor/symfony/symfony/src"/>
+	<buildpathentry kind="src" path="vendor/willdurand/negotiation/src"/>
+	<buildpathentry kind="src" path="vendor/doctrine/doctrine-bundle"/>
+	<buildpathentry kind="src" path="vendor/symfony/monolog-bundle"/>
+	<buildpathentry kind="src" path="vendor/doctrine/annotations/lib"/>
+	<buildpathentry kind="src" path="vendor/doctrine/collections/lib"/>
+	<buildpathentry kind="src" path="vendor/doctrine/cache/lib"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-file-iterator/File"/>
+	<buildpathentry kind="src" path="vendor/twig/twig/lib"/>
+	<buildpathentry kind="src" path="vendor/symfony/swiftmailer-bundle"/>
+	<buildpathentry kind="src" path="vendor/phpcollection/phpcollection/src"/>
+	<buildpathentry kind="src" path="vendor/sensio/generator-bundle"/>
+	<buildpathentry kind="src" path="vendor/guzzle/stream"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-timer/PHP"/>
+	<buildpathentry kind="src" path="vendor/guzzle/parser"/>
 	<buildpathentry kind="src" path="vendor/incenteev/composer-parameter-handler"/>
-	<buildpathentry kind="src" path="app"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-token-stream/PHP"/>
 	<buildpathentry kind="src" path="vendor/jdorn/sql-formatter/lib"/>
 </buildpath>

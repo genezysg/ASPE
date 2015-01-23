@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61d89aec8d914a9d9e604f5b1c1ddf32",
+    "hash": "5b1f72524a32fcec36fb7bc0765526bd",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -617,22 +617,22 @@
         },
         {
             "name": "friendsofsymfony/rest-bundle",
-            "version": "1.4.2",
+            "version": "dev-master",
             "target-dir": "FOS/RestBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "0649a4c1d8cecd27885b09c1cddddb497a0d3ca3"
+                "reference": "a21ce4e0cc7d83875d2c31b023aee44d476e7104"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/0649a4c1d8cecd27885b09c1cddddb497a0d3ca3",
-                "reference": "0649a4c1d8cecd27885b09c1cddddb497a0d3ca3",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/a21ce4e0cc7d83875d2c31b023aee44d476e7104",
+                "reference": "a21ce4e0cc7d83875d2c31b023aee44d476e7104",
                 "shasum": ""
             },
             "require": {
-                "doctrine/inflector": "1.0.*",
-                "php": ">=5.3.2",
+                "doctrine/inflector": "~1.0",
+                "php": ">=5.3.9",
                 "psr/log": "~1.0",
                 "symfony/framework-bundle": "~2.2",
                 "willdurand/jsonp-callback-validator": "~1.0",
@@ -660,7 +660,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -691,7 +691,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2014-08-15 12:18:54"
+            "time": "2015-01-21 08:35:40"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2220,12 +2220,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
-                "reference": "9a5b5289eb22079ec139ba1eb06043d4b89c6677"
+                "reference": "c5ff0542772102ddd4e2fbe173e9ad40ad67c22f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/9a5b5289eb22079ec139ba1eb06043d4b89c6677",
-                "reference": "9a5b5289eb22079ec139ba1eb06043d4b89c6677",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/c5ff0542772102ddd4e2fbe173e9ad40ad67c22f",
+                "reference": "c5ff0542772102ddd4e2fbe173e9ad40ad67c22f",
                 "shasum": ""
             },
             "require": {
@@ -2269,7 +2269,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2014-09-16 05:03:04"
+            "time": "2015-01-19 02:21:37"
         },
         {
             "name": "guzzle/common",
@@ -2545,12 +2545,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipFunctionalTestBundle.git",
-                "reference": "ae44d2db9e8831adc3dae3b79c3e91e4628b445b"
+                "reference": "3313028ab6dcffc699b46932ba89e177c8d9f2b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipFunctionalTestBundle/zipball/ae44d2db9e8831adc3dae3b79c3e91e4628b445b",
-                "reference": "ae44d2db9e8831adc3dae3b79c3e91e4628b445b",
+                "url": "https://api.github.com/repos/liip/LiipFunctionalTestBundle/zipball/3313028ab6dcffc699b46932ba89e177c8d9f2b8",
+                "reference": "3313028ab6dcffc699b46932ba89e177c8d9f2b8",
                 "shasum": ""
             },
             "require": {
@@ -2593,7 +2593,7 @@
             "keywords": [
                 "Symfony2"
             ],
-            "time": "2014-12-23 22:52:03"
+            "time": "2015-01-22 09:50:35"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2965,6 +2965,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "friendsofsymfony/rest-bundle": 20,
         "jms/serializer-bundle": 20,
         "willdurand/rest-extra-bundle": 20,
         "nelmio/api-doc-bundle": 20,
