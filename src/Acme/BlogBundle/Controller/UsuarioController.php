@@ -82,6 +82,23 @@ class UsuarioController extends FOSRestController {
 		return $usuario;
 	}
 	
+	public function deleteUsuarioAction($codigo, Request $request, ParamFetcherInterface $paramFetcher)
+	{
+		try {
+			if ($usuario = $this->container->get('acme_blog.usuario.handler')->get($codigo)) {
+				$statusCode = Codes::HTTP_CREATED;
+				$this->container->get('acme_blog.usuario.handler')->delete($usuario);
+			} else
+				$statusCode = Codes::HTTP_NO_CONTENT;
+			$routeOptions = array(
+					'_format' => $request->get('_format')
+			);
+			return $this->routeRedirectView('api_1_get_usuarios', $routeOptions, $statusCode);	
+		} catch (InvalidFormException $exception) {
+		
+			return $exception->getForm();
+		}
+	}
 	/**
 	 * Apresenta o formulário para criar um novo usuario.
 	 * 
@@ -97,7 +114,7 @@ class UsuarioController extends FOSRestController {
 	 * )
 	 *
 	 * @return FormUsuarioInterface
-	 */
+	 */	
 	public function newUsuarioAction() {
 		return $this->createForm ( new UsuarioType () );
 	}

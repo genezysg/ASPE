@@ -3,6 +3,7 @@
 namespace Acme\BlogBundle\Handler;
 
 use Acme\BlogBundle\Model\UsuarioInterface;
+use Acme\BlogBundle\Entity\Usuario;
 
 interface UsuarioHandlerInterface
 {
@@ -37,7 +38,15 @@ interface UsuarioHandlerInterface
      * @return UsuarioInterface
      */
     public function post(array $parametros);
-
+    
+    /**
+     * Delete a Page.
+     *
+     * @param PageInterface $page
+     *
+     */
+    public function delete(Usuario $usuario);
+    
     /**
      * Edita um usuario.
      *

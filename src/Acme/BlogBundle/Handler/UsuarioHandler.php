@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Acme\BlogBundle\Exception\InvalidFormException;
 use Symfony\Component\Form\FormFactoryInterface;
 use Acme\BlogBundle\Form\UsuarioType;
+use Acme\BlogBundle\Entity\Usuario;
 
 class UsuarioHandler implements UsuarioHandlerInterface{
 	
@@ -62,7 +63,28 @@ class UsuarioHandler implements UsuarioHandlerInterface{
 	{
 		return $this->processForm($usuario, $parametros, 'PATCH');
 	}
-
+	
+	/**
+	 * Remove o usuário
+	 *
+	 * @api
+	 *
+	 * @param mixed $id
+	 *
+	 */
+	public function delete(Usuario $usuario)
+	{
+		return $this->processDelete($usuario);
+	}
+	
+	private function processDelete(Usuario $usuario)
+	{
+		$this->om->remove($usuario);
+		$this->om->flush($usuario);
+	
+		return $usuario;
+	}
+	
 	private function processForm(UsuarioInterface $usuario, array $parametros, $metodo = "PUT")
 	{
 		$form = $this->formFactory->create(new UsuarioType(), $usuario, array('method' => $metodo));

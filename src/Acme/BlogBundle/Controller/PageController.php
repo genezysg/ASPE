@@ -281,6 +281,31 @@ class PageController extends FOSRestController
             return $exception->getForm();
         }
     }
+    /**
+     * Show Edit Page
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   statusCodes = {
+     *     200 = "Returned when successful"
+     *   }
+     * )
+     *
+     * @Annotations\View(
+     *  templateVar = "form"
+     * )
+     *
+     * @return FormTypeInterface
+     */
+    public function editPageAction($id, Request $request){
+    	try{
+    		$page = $this->container->get('acme_blog.page.handler')->get($id);
+    		return $this->createForm(new PageType(), $page);    		
+    	} catch (InvalidFormException $exception) {
+    		
+    			return $exception->getForm();
+    	}
+    }
     
     /**
      * Fetch a Page or throw an 404 Exception.
