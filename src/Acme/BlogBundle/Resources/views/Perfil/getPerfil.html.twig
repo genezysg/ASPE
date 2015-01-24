@@ -1,2 +1,5 @@
 <h1>Perfil: {{ perfil.nome }}</h1>
     <p>
+[<a href="{{ path('api_1_edit_perfil', {'codigo': perfil.codigo}) }}">{{ 'Edit'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_delete_perfil', {'codigo': perfil.codigo}) }}">{{ 'Delete'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_get_perfils') }}">{{ 'Back'|trans({}, 'AcmeBlogBundle') }}</a>]

@@ -19,32 +19,11 @@ use Acme\BlogBundle\Form\UsuarioType;
 use Acme\BlogBundle\Model\UsuarioInterface;
 
 class UsuarioController extends FOSRestController {
-	// public function getUsuarioAction($matricula){
-	// return $this->container->get('doctrine.entity_manager')->getRepository('usuario')->find($matricula);
-	// }
-	/**
-	 * Lista 5 usuarios.
-	 *
-	 * @ApiDoc(
-	 * resource = true,
-	 * statusCodes = {
-	 * 200 = "Returned when successful"
-	 * }
-	 * )
-	 *
-	 * @Annotations\QueryParam(name="posicao_inicio", requirements="\d+", nullable=true, description="Número que indica o início da leitura dos dados.")
-	 * @Annotations\QueryParam(name="limite", requirements="\d+", default="5", description="Quantas páginas serão retornadas.")
-	 *
-	 * @Annotations\View(
-	 * templateVar="usuarios"
-	 * )
-	 *
-	 * @param Request $request
-	 *        	objeto requisitado
-	 * @param ParamFetcherInterface $paramFetcher
-	 *        	serviço de busca de parâmetro
-	 *        	
-	 * @return array
+	/**	 
+	 * @Annotations\View(templateVar="usuarios")
+	 * 
+	 * @Annotations\QueryParam(name="posicao_inicio", requirements="\d+", nullable=true, description="Índice que indica o início da leitura.")
+     * @Annotations\QueryParam(name="limite", requirements="\d+", default="50", description="Limite de dados exibidos.")	 
 	 */
 	public function getUsuariosAction(Request $request, ParamFetcherInterface $paramFetcher) {
 		$posicao_inicio = $paramFetcher->get ( 'posicao_inicio' );
@@ -54,27 +33,8 @@ class UsuarioController extends FOSRestController {
 		return $this->container->get ( 'acme_blog.usuario.handler' )->all ( $limite, $posicao_inicio );
 	}
 	
-	/**
-	 * Retorna um usuario pela matricula passada.
-	 *
-	 * @ApiDoc(
-	 * resource = true,
-	 * description = "Retorna um usuario pelo matricula",
-	 * output = "Acme\BlogBundle\Entity\Usuario",
-	 * statusCodes = {
-	 * 200 = "Retornado quando bem-sucedido",
-	 * 404 = "Retornado quando a página não foi encontrada"
-	 * }
-	 * )
-	 *
-	 * @Annotations\View(templateVar="usuario")
-	 *
-	 * @param int $matricula
-	 *        	matricula do usuario
-	 *        	
-	 * @return array
-	 *
-	 * @throws NotFoundHttpException quando o usuario não foi encontrado
+	/**	 
+	 * @Annotations\View(templateVar="usuario")	 	 
 	 */
 	public function getUsuarioAction($matricula) {
 		$usuario = $this->getOr404 ( $matricula );
@@ -82,65 +42,19 @@ class UsuarioController extends FOSRestController {
 		return $usuario;
 	}
 	
-	public function deleteUsuarioAction($codigo, Request $request, ParamFetcherInterface $paramFetcher)
-	{
-		try {
-			if ($usuario = $this->container->get('acme_blog.usuario.handler')->get($codigo)) {
-				$statusCode = Codes::HTTP_CREATED;
-				$this->container->get('acme_blog.usuario.handler')->delete($usuario);
-			} else
-				$statusCode = Codes::HTTP_NO_CONTENT;
-			$routeOptions = array(
-					'_format' => $request->get('_format')
-			);
-			return $this->routeRedirectView('api_1_get_usuarios', $routeOptions, $statusCode);	
-		} catch (InvalidFormException $exception) {
-		
-			return $exception->getForm();
-		}
-	}
-	/**
-	 * Apresenta o formulário para criar um novo usuario.
-	 * 
-	 * @ApiDoc(
-	 * resource = true,
-	 * statusCodes = {
-	 * 200 = "Retornado quando bem-sucedido"
-	 * }
-	 * )
-	 *
-	 * @Annotations\View(
-	 * templateVar = "form"
-	 * )
-	 *
-	 * @return FormUsuarioInterface
+	/**	 
+	 * @Annotations\View(templateVar = "form")
 	 */	
 	public function newUsuarioAction() {
 		return $this->createForm ( new UsuarioType () );
 	}
 	
-	/**
-	 * Cria um usuario a partir dos dados enviados
-	 * 
-	 * @ApiDoc(
-	 *   resource = true,
-	 *   description = "Cria um usuario a partir dos dados enviados.",
-	 *   input = "Acme\BlogBundle\Form\UsuarioType",
-	 *   statusCodes = {
-	 *   	200 = "Retornado quando bem-sucedido",
-	 *   	404 = "Retornado quando a página não foi encontrada"
-	 *   }
-	 * )
-	 *
+	/**	 
 	 * @Annotations\View(
 	 *  template = "AcmeBlogBundle:Usuario:newUsuario.html.twig",
 	 *  statusCode = Codes::HTTP_BAD_REQUEST,
 	 *  templateVar = "form"
-	 * )
-	 *
-	 * @param Request $request Objeto Request
-	 *
-	 * @return FormTypeInterface|View
+	 * )	 
 	 */
 	public function postUsuarioAction(Request $request)
 	{
@@ -161,31 +75,32 @@ class UsuarioController extends FOSRestController {
 			return $exception->getForm();
 		}
 	}
-
 	/**	 
-	 * Atualiza os dados existentes a partir dos dados enviados ou cria um novo usuario numa localização específica.
-	 * 
-	 * @ApiDoc(
-	 *   resource = true,
-	 *   input = "Acme\DemoBundle\Form\UsuarioType",
-	 *   statusCodes = {
-	 *     201 = "Retornado quando o usuário é criado",
-	 *     204 = "Retornado quando bem-sucedido",
-	 *     400 = "Retornado quando o formulário possui erros"
-	 *   }
-	 * )
-	 *
+	 * @Annotations\View(templateVar="form")
+	 * @Annotations\Get("/usuarios/{matricula}/delete")
+	 */
+	public function deleteUsuarioAction($matricula, Request $request, ParamFetcherInterface $paramFetcher)
+	{
+		try {
+			if ($usuario = $this->container->get('acme_blog.usuario.handler')->get($matricula)) {
+				$statusCode = Codes::HTTP_CREATED;
+				$this->container->get('acme_blog.usuario.handler')->delete($usuario);
+			} else
+				$statusCode = Codes::HTTP_NO_CONTENT;
+			$routeOptions = array(
+					'_format' => $request->get('_format')
+			);
+			return $this->routeRedirectView('api_1_get_usuarios', $routeOptions, $statusCode);
+		} catch (InvalidFormException $exception) {
+	
+			return $exception->getForm();
+		}
+	}
+	/**	 	 
 	 * @Annotations\View(
 	 *  template = "AcmeBlogBundle:Usuario:editUsuario.html.twig",
 	 *  templateVar = "form"
-	 * )
-	 *
-	 * @param Request $request 		  O objeto request
-	 * @param int     $matricula      Matrícula do usuario
-	 *
-	 * @return FormTypeInterface|View
-	 *
-	 * @throws NotFoundHttpException quando o usuario não existe
+	 * )	
 	 */
 	public function putUsuarioAction(Request $request, $matricula)
 	{
@@ -216,29 +131,11 @@ class UsuarioController extends FOSRestController {
 		}
 	}
 	
-	/**
-	 * Atualiza os dados existentes a partir dos dados enviados ou cria um novo usuario numa localização específica.
-	 *
-	 * @ApiDoc(
-	 *   resource = true,
-	 *   input = "Acme\DemoBundle\Form\UsuarioType",
-	 *   statusCodes = {
-	 *     204 = "Retornado quando bem-sucedido",
-	 *     400 = "Retornado quando o formulário possui erros"
-	 *   }
-	 * )
-	 *
+	/**	 
 	 * @Annotations\View(
 	 *  template = "AcmeBlogBundle:Usuario:editUsuario.html.twig",
 	 *  templateVar = "form"
-	 * )
-	 *
-	 * @param Request $request 		  O objeto request
-	 * @param int     $matricula      Matrícula do usuario
-	 *
-	 * @return FormTypeInterface|View
-	 *
-	 * @throws NotFoundHttpException quando o usuario não existe
+	 * )	 
 	 */
 	public function patchUsuarioAction(Request $request, $matricula)
 	{
@@ -261,14 +158,18 @@ class UsuarioController extends FOSRestController {
 		}
 	}
 	/**
-	 * Busca uma página ou dispara uma exceção 404.
-	 *
-	 * @param mixed $matricula        	
-	 *
-	 * @return UsuarioInterface
-	 *
-	 * @throws NotFoundHttpException
+	 * @Annotations\View(templateVar = "form")
 	 */
+	public function editUsuarioAction($matricula, Request $request){
+		try{
+			$usuario = $this->container->get('acme_blog.usuario.handler')->get($matricula);
+			return $this->createForm(new UsuarioType(), $usuario);
+		} catch (InvalidFormException $exception) {
+	
+			return $exception->getForm();
+		}
+	}
+	
 	protected function getOr404($matricula) {
 		if (! ($usuario = $this->container->get ( 'acme_blog.usuario.handler' )->get ( $matricula ))) {
 			throw new NotFoundHttpException ( sprintf ( 'The resource \'%s\' was not found.', $matricula ) );

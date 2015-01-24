@@ -1,0 +1,8 @@
+<h1>Disciplina: {{ disciplina.nome }}</h1>
+	<p>
+	Horas: {{ disciplina.horas }}
+	</p>
+    <p>
+[<a href="{{ path('api_1_edit_disciplina', {'codigo': disciplina.codigo}) }}">{{ 'Edit'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_delete_disciplina', {'codigo': disciplina.codigo}) }}">{{ 'Delete'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_get_disciplinas') }}">{{ 'Back'|trans({}, 'AcmeBlogBundle') }}</a>]

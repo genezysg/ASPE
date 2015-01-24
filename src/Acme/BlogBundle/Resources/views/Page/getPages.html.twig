@@ -1,18 +1,18 @@
 {% block content %}
-    <h1 class="title">{{ 'page.list'|trans({}, 'AcmeBlogBundle') }}</h1>
+    <h1 class="title">{{ 'Page List'|trans({}, 'AcmeBlogBundle') }}</h1>
 
     <ul id="page-list">
         {% for page in pages %}
             <li>
                 <a href="{{ path('api_1_get_page', {'id': page.id}) }}">{{ page.title }}</a>
-                [<a href="{{ path('api_1_edit_page', {'id': page.id}) }}">{{ 'page.edit.link'|trans({}, 'AcmeBlogBundle') }}</a>}
-                [<a href="{{ path('acme_blog_page_delete', {'id': page.id}) }}">{{ 'page.delete.link'|trans({}, 'AcmeBlogBundle') }}</a>}
+{#                 [<a href="{{ path('api_1_edit_page', {'id': page.id}) }}">{{ 'page.edit.link'|trans({}, 'AcmeBlogBundle') }}</a>}#}
+{#                 [<a href="{{ path('acme_blog_page_delete', {'id': page.id}) }}">{{ 'page.delete.link'|trans({}, 'AcmeBlogBundle') }}</a>}#}
             </li>
         {% else %}
             <li>{{ 'page.list.empty'|trans({}, 'AcmeBlogBundle') }}</li>
         {% endfor %}
     </ul>
     <p>
-        <a href="{{ path('api_1_new_page') }}">{{ 'page.new.link'|trans({}, 'AcmeBlogBundle') }}</a>
+        <a href="{{ path('api_1_new_page') }}">{{ 'New Page'|trans({}, 'AcmeBlogBundle') }}</a>
     </p>
 {% endblock %}

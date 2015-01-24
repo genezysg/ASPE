@@ -2,3 +2,6 @@
     <p>
 {{ page.body }}
     </p>
+[<a href="{{ path('api_1_edit_page', {'id': page.id}) }}">{{ 'Edit'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_delete_page', {'id': page.id}) }}">{{ 'Delete'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_get_pages') }}">{{ 'Back'|trans({}, 'AcmeBlogBundle') }}</a>]

@@ -1,6 +1,8 @@
 # src/Acme/BlogBundle/Resources/config/validation.yml
 Acme\BlogBundle\Entity\Page:
-    properties:
+    properties: 
+        id:
+            - 'Null': ~
         title:
             - NotBlank: ~
             - NotNull: ~

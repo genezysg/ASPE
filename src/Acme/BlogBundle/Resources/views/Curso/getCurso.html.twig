@@ -1,0 +1,5 @@
+<h1>Curso: {{ curso.nome }}</h1>
+    <p>
+[<a href="{{ path('api_1_edit_curso', {'codigo': curso.codigo}) }}">{{ 'Edit'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_delete_curso', {'codigo': curso.codigo}) }}">{{ 'Delete'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_get_cursos') }}">{{ 'Back'|trans({}, 'AcmeBlogBundle') }}</a>]

@@ -1,0 +1,19 @@
+{% block content %}
+<h1 class="title">{{ 'Lista de Usuarios'|trans({}, 'AcmeBlogBundle') }}</h1>
+
+<ul codigo="disciplina-list">
+	{% for disciplina in disciplina %}
+	<li><a
+		href="{{ path('api_1_get_disciplina', {'codigo': disciplina.codigo}) }}">{{ disciplina.nome }}</a> 
+		{#[<a href="{{ path('api_1_edit_perfis', {'codigo':disciplina.codigo}) }}">{{ 'disciplina.edit.link'|trans({}, 'AcmeBlogBundle')
+		}}</a>]#} {#[<a href="{{ path('api_1_remove_perfis', {'codigo': disciplina.codigo})
+		}}">{{ 'disciplina.remove.link'|trans({}, 'AcmeBlogBundle') }}</a>]#}</li>
+	{% else %}
+	<li>{{ 'Disciplina.list.empty'|trans({}, 'AcmeBlogBundle') }}</li> {%
+	endfor %}
+</ul>
+<p>
+	<a href="{{ path('api_1_new_disciplina') }}">{{
+		'Novo Disciplina'|trans({}, 'AcmeBlogBundle') }}</a>
+</p>
+{% endblock %}

@@ -33,7 +33,7 @@ class PageController extends FOSRestController
      * )
      *
      * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to start listing pages.")
-     * @Annotations\QueryParam(name="limit", requirements="\d+", default="5", description="How many pages to return.")
+     * @Annotations\QueryParam(name="limit", requirements="\d+", default="50", description="How many pages to return.")
      *
      * @Annotations\View(
      *  templateVar="pages"
@@ -93,9 +93,11 @@ class PageController extends FOSRestController
      *   }
      * )
      * @Annotations\QueryParam(name="offset", requirements="\d+", nullable=true, description="Offset from which to start listing pages.")
-     * @Annotations\QueryParam(name="limit", requirements="\d+", default="5", description="How many pages to return.")
+     * @Annotations\QueryParam(name="limit", requirements="\d+", default="50", description="How many pages to return.")
      * 
-     * @Annotations\View(templateVar="page")
+     *
+     * @Annotations\View(templateVar="form")
+     * @Annotations\Get("/pages/{id}/delete")
      *
      * @param int     $id      the page id
      * @param Request               $request      the request object
@@ -107,17 +109,23 @@ class PageController extends FOSRestController
      * 
      * 
      */
+    
     public function deletePageAction($id, Request $request, ParamFetcherInterface $paramFetcher)
     {
-    	if ($page = $this->container->get('acme_blog.page.handler')->get($id)) {
-    		$statusCode = Codes::HTTP_CREATED;
-    		$this->container->get('acme_blog.page.handler')->delete($page);
-    	} else
-    		$statusCode = Codes::HTTP_NO_CONTENT;    	
-    	$routeOptions = array(
-    			'_format' => $request->get('_format')
-    	);
-    	return $this->routeRedirectView('api_1_get_pages', $routeOptions, $statusCode);
+    	try{
+	    	if ($page = $this->container->get('acme_blog.page.handler')->get($id)) {
+	    		$statusCode = Codes::HTTP_CREATED;
+	    		$this->container->get('acme_blog.page.handler')->delete($page);
+	    	} else
+	    		$statusCode = Codes::HTTP_NO_CONTENT;    	
+	    	$routeOptions = array(
+	    			'_format' => $request->get('_format')
+	    	);
+	    	return $this->routeRedirectView('api_1_get_pages', $routeOptions, $statusCode);
+    	} catch (InvalidFormException $exception) {
+    	
+    		return $exception->getForm();
+    	}
     }
     /**
      * Presents the form to use to create a new page.

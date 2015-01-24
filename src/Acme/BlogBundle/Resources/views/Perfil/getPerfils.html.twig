@@ -2,7 +2,7 @@
 <h1 class="title">{{ 'Lista de Usuarios'|trans({}, 'AcmeBlogBundle') }}</h1>
 
 <ul codigo="perfil-list">
-	{% for perfil in perfis %}
+	{% for perfil in perfil %}
 	<li><a
 		href="{{ path('api_1_get_perfil', {'codigo': perfil.codigo}) }}">{{ perfil.nome }}</a> 
 		{#[<a href="{{ path('api_1_edit_perfis', {'codigo':perfil.codigo}) }}">{{ 'perfil.edit.link'|trans({}, 'AcmeBlogBundle')
@@ -14,6 +14,6 @@
 </ul>
 <p>
 	<a href="{{ path('api_1_new_perfil') }}">{{
-		'perfil.new.link'|trans({}, 'AcmeBlogBundle') }}</a>
+		'Novo Perfil'|trans({}, 'AcmeBlogBundle') }}</a>
 </p>
 {% endblock %}

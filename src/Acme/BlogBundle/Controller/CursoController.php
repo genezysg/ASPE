@@ -15,61 +15,61 @@ use Symfony\Component\Form\FormTypeInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 use Acme\BlogBundle\Exception\InvalidFormException;
-use Acme\BlogBundle\Form\PerfilType;
-use Acme\BlogBundle\Model\PerfilInterface;
+use Acme\BlogBundle\Form\CursoType;
+use Acme\BlogBundle\Model\CursoInterface;
 
-class PerfilController extends FOSRestController {
+class CursoController extends FOSRestController {
 	
 	/**
-	 * @Annotations\View(templateVar="perfil")
+	 * @Annotations\View(templateVar="curso")
 	 * 
 	 * @Annotations\QueryParam(name="posicao_inicio", requirements="\d+", nullable=true, description="Índice que indica o início da leitura.")
      * @Annotations\QueryParam(name="limite", requirements="\d+", default="50", description="Limite de dados exibidos.")	 
 	 */
-	public function getPerfilsAction(Request $request, ParamFetcherInterface $paramFetcher) {
+	public function getCursosAction(Request $request, ParamFetcherInterface $paramFetcher) {
 		$posicao_inicio = $paramFetcher->get ( 'posicao_inicio' );
 		$posicao_inicio = null == $posicao_inicio ? 0 : $posicao_inicio;
 		$limite = $paramFetcher->get ( 'limite' );
 		
-		return $this->container->get ( 'acme_blog.perfil.handler' )->all ( $limite, $posicao_inicio );
+		return $this->container->get ( 'acme_blog.curso.handler' )->all ( $limite, $posicao_inicio );
 	}
 	
 	/**
-	 * @Annotations\View(templateVar="perfil")
+	 * @Annotations\View(templateVar="curso")
 	 */
-	public function getPerfilAction($codigo) {
-		$perfil = $this->getOr404 ( $codigo );
+	public function getCursoAction($codigo) {
+		$curso = $this->getOr404 ( $codigo );
 		
-		return $perfil;
+		return $curso;
 	}
 	
 	/**	 
 	 * @Annotations\View(templateVar = "form")
 	 */
-	public function newPerfilAction() {
-		return $this->createForm ( new PerfilType () );
+	public function newCursoAction() {
+		return $this->createForm ( new CursoType () );
 	}
 	
 	/**	
 	 * @Annotations\View(
-	 *  template = "AcmeBlogBundle:Perfil:newPerfil.html.twig",
+	 *  template = "AcmeBlogBundle:Curso:newCurso.html.twig",
 	 *  statusCode = Codes::HTTP_BAD_REQUEST,
 	 *  templateVar = "form"
 	 * )	 
 	 */
-	public function postPerfilAction(Request $request)
+	public function postCursoAction(Request $request)
 	{
 		try {
-			$newPerfil = $this->container->get('acme_blog.perfil.handler')->post(
+			$newCurso = $this->container->get('acme_blog.curso.handler')->post(
 					$request->request->all()
 			);
 	
 			$routeOptions = array(
-					'codigo' => $newPerfil->getCodigo(),
+					'codigo' => $newCurso->getCodigo(),
 					'_format' => $request->get('_format')
 			);
 	
-			return $this->routeRedirectView('api_1_get_perfil', $routeOptions, Codes::HTTP_CREATED);
+			return $this->routeRedirectView('api_1_get_curso', $routeOptions, Codes::HTTP_CREATED);
 	
 		} catch (InvalidFormException $exception) {
 	
@@ -79,21 +79,21 @@ class PerfilController extends FOSRestController {
 
 	/**	 
 	 * @Annotations\View(templateVar="form")
-	 * @Annotations\Get("/perfil/{codigo}/delete")
+	 * @Annotations\Get("/curso/{codigo}/delete")
 	 *
 	 */
-	public function deletePerfilAction($codigo, Request $request, ParamFetcherInterface $paramFetcher)
+	public function deleteCursoAction($codigo, Request $request, ParamFetcherInterface $paramFetcher)
 	{
 		try {
-			if ($usuario = $this->container->get('acme_blog.perfil.handler')->get($codigo)) {
+			if ($usuario = $this->container->get('acme_blog.curso.handler')->get($codigo)) {
 				$statusCode = Codes::HTTP_CREATED;
-				$this->container->get('acme_blog.perfil.handler')->delete($usuario);
+				$this->container->get('acme_blog.curso.handler')->delete($usuario);
 			} else
 				$statusCode = Codes::HTTP_NO_CONTENT;
 			$routeOptions = array(
 					'_format' => $request->get('_format')
 			);
-			return $this->routeRedirectView('api_1_get_perfils', $routeOptions, $statusCode);
+			return $this->routeRedirectView('api_1_get_cursos', $routeOptions, $statusCode);
 		} catch (InvalidFormException $exception) {
 	
 			return $exception->getForm();
@@ -101,32 +101,32 @@ class PerfilController extends FOSRestController {
 	}
 	/**	 	 
 	 * @Annotations\View(
-	 *  template = "AcmeBlogBundle:Perfil:editPerfil.html.twig",
+	 *  template = "AcmeBlogBundle:Curso:editCurso.html.twig",
 	 *  templateVar = "form"
 	 * )	 
 	 */
-	public function putPerfilAction(Request $request, $codigo)
+	public function putCursoAction(Request $request, $codigo)
 	{
 		try {
-			if (!($perfil = $this->container->get('acme_blog.perfil.handler')->get($codigo))) {
+			if (!($curso = $this->container->get('acme_blog.curso.handler')->get($codigo))) {
 				$statusCode = Codes::HTTP_CREATED;
-				$perfil = $this->container->get('acme_blog.perfil.handler')->post(
+				$curso = $this->container->get('acme_blog.curso.handler')->post(
 						$request->request->all()
 				);
 			} else {
 				$statusCode = Codes::HTTP_NO_CONTENT;
-				$perfil = $this->container->get('acme_blog.perfil.handler')->put(
-						$perfil,
+				$curso = $this->container->get('acme_blog.curso.handler')->put(
+						$curso,
 						$request->request->all()
 				);
 			}
 	
 			$routeOptions = array(
-					'codigo' => $perfil->getCodigo(),
+					'codigo' => $curso->getCodigo(),
 					'_format' => $request->get('_format')
 			);
 	
-			return $this->routeRedirectView('api_1_get_perfil', $routeOptions, $statusCode);
+			return $this->routeRedirectView('api_1_get_curso', $routeOptions, $statusCode);
 	
 		} catch (InvalidFormException $exception) {
 	
@@ -136,47 +136,48 @@ class PerfilController extends FOSRestController {
 	
 	/**	 
 	 * @Annotations\View(
-	 *  template = "AcmeBlogBundle:Perfil:editPerfil.html.twig",
+	 *  template = "AcmeBlogBundle:Curso:editCurso.html.twig",
 	 *  templateVar = "form"
 	 * )	 
 	 */
-	public function patchPerfilAction(Request $request, $codigo)
+	public function patchCursoAction(Request $request, $codigo)
 	{
 		try {
-			$perfil = $this->container->get('acme_blog.perfil.handler')->patch(
+			$curso = $this->container->get('acme_blog.curso.handler')->patch(
 					$this->getOr404($codigo),
 					$request->request->all()
 			);
 	
 			$routeOptions = array(
-					'codigo' => $perfil->getCodigo(),
+					'codigo' => $curso->getCodigo(),
 					'_format' => $request->get('_format')
 			);
 	
-			return $this->routeRedirectView('api_1_get_perfil', $routeOptions, Codes::HTTP_NO_CONTENT);
+			return $this->routeRedirectView('api_1_get_curso', $routeOptions, Codes::HTTP_NO_CONTENT);
 	
 		} catch (InvalidFormException $exception) {
 	
 			return $exception->getForm();
 		}
 	}	
+	
 	/**
 	 * @Annotations\View(templateVar = "form")
 	 */
-	public function editPerfilAction($codigo, Request $request){
+	public function editCursoAction($codigo, Request $request){
 		try{
-			$perfil = $this->container->get('acme_blog.perfil.handler')->get($codigo);
-			return $this->createForm(new PerfilType(), $perfil);
+			$curso = $this->container->get('acme_blog.curso.handler')->get($codigo);
+			return $this->createForm(new CursoType(), $curso);
 		} catch (InvalidFormException $exception) {
 	
 			return $exception->getForm();
 		}
 	}
 	protected function getOr404($codigo) {
-		if (! ($perfil = $this->container->get ( 'acme_blog.perfil.handler' )->get ( $codigo ))) {
+		if (! ($curso = $this->container->get ( 'acme_blog.curso.handler' )->get ( $codigo ))) {
 			throw new NotFoundHttpException ( sprintf ( 'The resource \'%s\' was not found.', $codigo ) );
 		}
 		
-		return $perfil;
+		return $curso;
 	}
 }

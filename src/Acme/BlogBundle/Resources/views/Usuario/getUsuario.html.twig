@@ -20,3 +20,6 @@ Telefone Celular: {{ usuario.telefoneCelular }}
     <p>
 Perfil: {{ usuario.getPerfil }}
     </p>
+[<a href="{{ path('api_1_edit_usuario', {'matricula': usuario.matricula}) }}">{{ 'Edit'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_delete_usuario', {'matricula': usuario.matricula}) }}">{{ 'Delete'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('api_1_get_usuarios') }}">{{ 'Back'|trans({}, 'AcmeBlogBundle') }}</a>]

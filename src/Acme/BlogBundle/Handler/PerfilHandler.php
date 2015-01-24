@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Acme\BlogBundle\Exception\InvalidFormException;
 use Symfony\Component\Form\FormFactoryInterface;
 use Acme\BlogBundle\Form\PerfilType;
+use Acme\BlogBundle\Entity\Perfil;
 
 class PerfilHandler implements PerfilHandlerInterface{
 	
@@ -21,43 +22,28 @@ class PerfilHandler implements PerfilHandlerInterface{
 		$this->repository = $this->om->getRepository($this->entityClass);
 		$this->formFactory = $formFactory;
 	}
-	
-	/* (non-PHPdoc)
-	 * @see \Acme\BlogBundle\Handler\PerfilHandlerInterface::get()
-	 */
+
 	public function get($matricula) 
 	{
 		return $this->repository->find($matricula);
 	}
 
-	/* (non-PHPdoc)
-	 * @see \Acme\BlogBundle\Handler\PerfilHandlerInterface::all()
-	 */
 	public function all($limite = 5, $posicao_inicio = 0) 
 	{
 		return $this->repository->findBy(array(), null, $limite, $posicao_inicio);
 	}
-
-	/* (non-PHPdoc)
-	 * @see \Acme\BlogBundle\Handler\PerfilHandlerInterface::post()
-	 */
+	
 	public function post(array $parametros) 
 	{
 		$perfil = $this->createPerfil();
 		return $this->processForm($perfil, $parametros, 'POST');
 	}
 
-	/* (non-PHPdoc)
-	 * @see \Acme\BlogBundle\Handler\PerfilHandlerInterface::put()
-	 */
 	public function put(PerfilInterface $perfil, array $parametros)
 	{		
 		return $this->processForm($perfil, $parametros, 'PUT');
 	}
 
-	/* (non-PHPdoc)
-	 * @see \Acme\BlogBundle\Handler\PerfilHandlerInterface::patch()
-	 */
 	public function patch(PerfilInterface $perfil, array $parametros)
 	{
 		return $this->processForm($perfil, $parametros, 'PATCH');
@@ -83,4 +69,18 @@ class PerfilHandler implements PerfilHandlerInterface{
 	{
 		return new $this->entityClass();
 	}
+	
+	public function delete(Perfil $perfil)
+	{
+		return $this->processDelete($perfil);
+	}
+	
+	private function processDelete(Perfil $perfil)
+	{
+		$this->om->remove($perfil);
+		$this->om->flush($perfil);
+	
+		return $perfil;
+	}
+
 }

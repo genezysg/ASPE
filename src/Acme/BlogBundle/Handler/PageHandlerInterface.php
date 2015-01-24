@@ -26,7 +26,7 @@ interface PageHandlerInterface
      *
      * @return array
      */
-    public function all($limit = 5, $offset = 0);
+    public function all($limit = 0, $offset = 0);
 
     /**
      * Post Page, creates a new Page.
@@ -43,7 +43,7 @@ interface PageHandlerInterface
     /**
      * Delete a Page.
      *
-     * @param PageInterface $page
+     * @param Page $page
      *
      */
     public function delete(Page $page);

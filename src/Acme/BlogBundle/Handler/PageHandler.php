@@ -44,7 +44,7 @@ class PageHandler implements PageHandlerInterface
      *
      * @return array
      */
-    public function all($limit = 5, $offset = 0)
+    public function all($limit = 0, $offset = 0)
     {
         return $this->repository->findBy(array(), null, $limit, $offset);
     }
@@ -93,7 +93,7 @@ class PageHandler implements PageHandlerInterface
      *
      * @api
      *
-     * @param mixed $id
+     * @param Page $page
      *
      */
     public function delete(Page $page)
