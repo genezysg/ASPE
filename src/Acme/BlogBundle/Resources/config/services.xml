@@ -20,6 +20,12 @@
     	
     	<parameter key="acme_blog.disciplina.handler.class">Acme\BlogBundle\Handler\DisciplinaHandler</parameter>
     	<parameter key="acme_blog.disciplina.class">Acme\BlogBundle\Entity\Disciplina</parameter>
+    	
+    	<parameter key="acme_blog.topico.handler.class">Acme\BlogBundle\Handler\TopicoHandler</parameter>
+    	<parameter key="acme_blog.topico.class">Acme\BlogBundle\Entity\Topico</parameter>
+    	
+    	<parameter key="acme_blog.ementa.handler.class">Acme\BlogBundle\Handler\EmentaHandler</parameter>
+    	<parameter key="acme_blog.ementa.class">Acme\BlogBundle\Entity\Ementa</parameter>
     </parameters>    
 
     <services>
@@ -51,7 +57,19 @@
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%acme_blog.disciplina.class%</argument>
             <argument type="service" id="form.factory"></argument>
-        </service>                            
+        </service>
+        
+        <service id="acme_blog.topico.handler" class="%acme_blog.topico.handler.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%acme_blog.topico.class%</argument>
+            <argument type="service" id="form.factory"></argument>
+        </service>    
+        
+        <service id="acme_blog.ementa.handler" class="%acme_blog.ementa.handler.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%acme_blog.ementa.class%</argument>
+            <argument type="service" id="form.factory"></argument>
+        </service>                        
     </services>
 
 </container>

@@ -1,0 +1,19 @@
+{% block content %}
+<h1 class="title">{{ 'Lista de Topicos'|trans({}, 'AcmeBlogBundle') }}</h1>
+
+<ul codigo="topico-list">
+	{% for topico in topico %}
+	<li><a
+		href="{{ path('api_1_get_topico', {'codigo': topico.codigo}) }}">{{ topico.nome }}</a> 
+		{#[<a href="{{ path('api_1_edit_perfis', {'codigo':topico.codigo}) }}">{{ 'topico.edit.link'|trans({}, 'AcmeBlogBundle')
+		}}</a>]#} {#[<a href="{{ path('api_1_remove_perfis', {'codigo': topico.codigo})
+		}}">{{ 'topico.remove.link'|trans({}, 'AcmeBlogBundle') }}</a>]#}</li>
+	{% else %}
+	<li>{{ 'Topico.list.empty'|trans({}, 'AcmeBlogBundle') }}</li> {%
+	endfor %}
+</ul>
+<p>
+	<a href="{{ path('api_1_new_topico') }}">{{
+		'Novo Topico'|trans({}, 'AcmeBlogBundle') }}</a>
+</p>
+{% endblock %}

@@ -6,21 +6,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DisciplinaType extends AbstractType
+class TopicoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('nome')
-            ->add('horas')
-            ->add('topicos')
         ;
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Acme\BlogBundle\Entity\Disciplina',
+            'data_class' => 'Acme\BlogBundle\Entity\Topico',
         ));
     }
 

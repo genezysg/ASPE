@@ -1,0 +1,19 @@
+{% block content %}
+<h1 class="title">{{ 'Lista de Ementas'|trans({}, 'AcmeBlogBundle') }}</h1>
+
+<ul codigo="ementa-list">
+	{% for ementa in ementa %}
+	<li><a
+		href="{{ path('api_1_get_ementa', {'codigo': ementa.codigo}) }}">{{ ementa.getDisciplina }} - {{ ementa.getTopico }}</a> 
+		{#[<a href="{{ path('api_1_edit_perfis', {'codigo':ementa.codigo}) }}">{{ 'ementa.edit.link'|trans({}, 'AcmeBlogBundle')
+		}}</a>]#} {#[<a href="{{ path('api_1_remove_perfis', {'codigo': ementa.codigo})
+		}}">{{ 'ementa.remove.link'|trans({}, 'AcmeBlogBundle') }}</a>]#}</li>
+	{% else %}
+	<li>{{ 'Ementa.list.empty'|trans({}, 'AcmeBlogBundle') }}</li> {%
+	endfor %}
+</ul>
+<p>
+	<a href="{{ path('api_1_new_ementa') }}">{{
+		'Novo Ementa'|trans({}, 'AcmeBlogBundle') }}</a>
+</p>
+{% endblock %}

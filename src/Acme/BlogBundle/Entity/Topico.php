@@ -26,11 +26,16 @@ class Topico implements TopicoInterface
 	public function getCodigo() {
 		return $this->codigo;
 	}
+	
 	public function getNome() {
 		return $this->nome;
 	}
+	
 	public function setNome($nome) {
-		$this->nome = $nome;
-		return $this;
+		$this->nome = $nome;	
+	}
+	
+	public function __toString() {
+		return $this->nome;
 	}
 }

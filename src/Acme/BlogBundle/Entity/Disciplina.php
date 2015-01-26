@@ -26,33 +26,38 @@ class Disciplina implements DisciplinaInterface
 	 * @ORM\Column(type="integer")
 	 */
 	private $horas;
-	/**
-	 * @ORM\ManyToMany(targetEntity="Topico")
-	 * @ORM\JoinTable(name="ementa",
-	 *      joinColumns={@ORM\JoinColumn(name="cod_disciplina", referencedColumnName="codigo")},
-	 *      inverseJoinColumns={@ORM\JoinColumn(name="cod_topico", referencedColumnName="codigo")}
-	 *      )
-	 **/
+	/** 
+	 * @ORM\OneToMany(targetEntity="Ementa", mappedBy="cod_disciplina", indexBy="indice")
+	 */
 	private $topicos;
 	
 	public function getCodigo() {
 		return $this->codigo;
 	}
+	
 	public function getNome() {
 		return $this->nome;
 	}
+	
 	public function setNome($nome) {
 		$this->nome = $nome;
 		return $this;
 	}
+	
 	public function getHoras() {
 		return $this->horas;
 	}
+	
 	public function setHoras($horas) {
 		$this->horas = $horas;
 		return $this;
-	}	
+	}
+	
 	public function getTopicos(){
 		return $this->topicos;
+	}
+	
+	public function __toString() {
+		return $this->nome;
 	}
 }
