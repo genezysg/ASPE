@@ -4,16 +4,16 @@
 <ul codigo="perfil-list">
 	{% for perfil in perfil %}
 	<li><a
-		href="{{ path('api_1_get_perfil', {'codigo': perfil.codigo}) }}">{{ perfil.nome }}</a> 
-		{#[<a href="{{ path('api_1_edit_perfis', {'codigo':perfil.codigo}) }}">{{ 'perfil.edit.link'|trans({}, 'AcmeBlogBundle')
-		}}</a>]#} {#[<a href="{{ path('api_1_remove_perfis', {'codigo': perfil.codigo})
+		href="{{ path('aspe_get_perfil', {'codigo': perfil.codigo}) }}">{{ perfil.nome }}</a> 
+		{#[<a href="{{ path('aspe_edit_perfis', {'codigo':perfil.codigo}) }}">{{ 'perfil.edit.link'|trans({}, 'AcmeBlogBundle')
+		}}</a>]#} {#[<a href="{{ path('aspe_remove_perfis', {'codigo': perfil.codigo})
 		}}">{{ 'perfil.remove.link'|trans({}, 'AcmeBlogBundle') }}</a>]#}</li>
 	{% else %}
 	<li>{{ 'Perfil.list.empty'|trans({}, 'AcmeBlogBundle') }}</li> {%
 	endfor %}
 </ul>
 <p>
-	<a href="{{ path('api_1_new_perfil') }}">{{
+	<a href="{{ path('aspe_new_perfil') }}">{{
 		'Novo Perfil'|trans({}, 'AcmeBlogBundle') }}</a>
 </p>
 {% endblock %}

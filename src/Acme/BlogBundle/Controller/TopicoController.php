@@ -69,7 +69,7 @@ class TopicoController extends FOSRestController {
 					'_format' => $request->get('_format')
 			);
 	
-			return $this->routeRedirectView('api_1_get_topico', $routeOptions, Codes::HTTP_CREATED);
+			return $this->routeRedirectView('aspe_get_topico', $routeOptions, Codes::HTTP_CREATED);
 	
 		} catch (InvalidFormException $exception) {
 	
@@ -93,7 +93,7 @@ class TopicoController extends FOSRestController {
 			$routeOptions = array(
 					'_format' => $request->get('_format')
 			);
-			return $this->routeRedirectView('api_1_get_topicos', $routeOptions, $statusCode);
+			return $this->routeRedirectView('aspe_get_topicos', $routeOptions, $statusCode);
 		} catch (InvalidFormException $exception) {
 	
 			return $exception->getForm();
@@ -126,7 +126,7 @@ class TopicoController extends FOSRestController {
 					'_format' => $request->get('_format')
 			);
 	
-			return $this->routeRedirectView('api_1_get_topico', $routeOptions, $statusCode);
+			return $this->routeRedirectView('aspe_get_topico', $routeOptions, $statusCode);
 	
 		} catch (InvalidFormException $exception) {
 	
@@ -153,7 +153,7 @@ class TopicoController extends FOSRestController {
 					'_format' => $request->get('_format')
 			);
 	
-			return $this->routeRedirectView('api_1_get_topico', $routeOptions, Codes::HTTP_NO_CONTENT);
+			return $this->routeRedirectView('aspe_get_topico', $routeOptions, Codes::HTTP_NO_CONTENT);
 	
 		} catch (InvalidFormException $exception) {
 	

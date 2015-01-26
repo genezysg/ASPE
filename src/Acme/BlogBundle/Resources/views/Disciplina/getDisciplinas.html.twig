@@ -4,16 +4,16 @@
 <ul codigo="disciplina-list">
 	{% for disciplina in disciplina %}
 	<li><a
-		href="{{ path('api_1_get_disciplina', {'codigo': disciplina.codigo}) }}">{{ disciplina.nome }}</a> 
-		{#[<a href="{{ path('api_1_edit_perfis', {'codigo':disciplina.codigo}) }}">{{ 'disciplina.edit.link'|trans({}, 'AcmeBlogBundle')
-		}}</a>]#} {#[<a href="{{ path('api_1_remove_perfis', {'codigo': disciplina.codigo})
+		href="{{ path('aspe_get_disciplina', {'codigo': disciplina.codigo}) }}">{{ disciplina.nome }}</a> 
+		{#[<a href="{{ path('aspe_edit_perfis', {'codigo':disciplina.codigo}) }}">{{ 'disciplina.edit.link'|trans({}, 'AcmeBlogBundle')
+		}}</a>]#} {#[<a href="{{ path('aspe_remove_perfis', {'codigo': disciplina.codigo})
 		}}">{{ 'disciplina.remove.link'|trans({}, 'AcmeBlogBundle') }}</a>]#}</li>
 	{% else %}
 	<li>{{ 'Disciplina.list.empty'|trans({}, 'AcmeBlogBundle') }}</li> {%
 	endfor %}
 </ul>
 <p>
-	<a href="{{ path('api_1_new_disciplina') }}">{{
+	<a href="{{ path('aspe_new_disciplina') }}">{{
 		'Novo Disciplina'|trans({}, 'AcmeBlogBundle') }}</a>
 </p>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% block content %}
     <h1>Registro de Dados do Topico</h1>
     {%  if (form is not null) %}
-    <form action="{{ url('api_1_post_topico') }}" method="POST" {{ form_enctype(form) }}>
+    <form action="{{ url('aspe_post_topico') }}" method="POST" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <input type="submit" value="submit">
     </form>

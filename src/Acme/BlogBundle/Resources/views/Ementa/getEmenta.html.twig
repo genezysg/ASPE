@@ -2,6 +2,6 @@
 Disciplina: <p>{{ ementa.getDisciplina }}</p>
 Topico: <p>{{ ementa.getTopico }}</p>
     <p>
-[<a href="{{ path('api_1_edit_ementa', {'codigo': ementa.codigo}) }}">{{ 'Edit'|trans({}, 'AcmeBlogBundle') }}</a>]
-[<a href="{{ path('api_1_delete_ementa', {'codigo': ementa.codigo}) }}">{{ 'Delete'|trans({}, 'AcmeBlogBundle') }}</a>]
-[<a href="{{ path('api_1_get_ementas') }}">{{ 'Back'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('aspe_edit_ementa', {'codigo': ementa.codigo}) }}">{{ 'Edit'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('aspe_delete_ementa', {'codigo': ementa.codigo}) }}">{{ 'Delete'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('aspe_get_ementas') }}">{{ 'Back'|trans({}, 'AcmeBlogBundle') }}</a>]

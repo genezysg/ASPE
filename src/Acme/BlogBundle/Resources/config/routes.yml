@@ -6,36 +6,36 @@ acme_blog_page:
     
 acme_blog_usuario:
     type: rest
-    prefix: /v1
+    prefix: /aspe
     resource: Acme\BlogBundle\Controller\UsuarioController
-    name_prefix:  api_1_
+    name_prefix:  aspe_
     
 acme_blog_perfil:
     type: rest
-    prefix: /v1
+    prefix: /aspe
     resource: Acme\BlogBundle\Controller\PerfilController
-    name_prefix:  api_1_
+    name_prefix:  aspe_
     
 acme_blog_curso:
     type: rest
-    prefix: /v1
+    prefix: /aspe
     resource: Acme\BlogBundle\Controller\CursoController
-    name_prefix:  api_1_
+    name_prefix:  aspe_
     
 acme_blog_disciplina:
     type: rest
-    prefix: /v1
+    prefix: /aspe
     resource: Acme\BlogBundle\Controller\DisciplinaController
-    name_prefix:  api_1_
+    name_prefix:  aspe_
 
 acme_blog_topico:
     type: rest
-    prefix: /v1
+    prefix: /aspe
     resource: Acme\BlogBundle\Controller\TopicoController
-    name_prefix:  api_1_
+    name_prefix:  aspe_
     
 acme_blog_ementa:
     type: rest
-    prefix: /v1
+    prefix: /aspe
     resource: Acme\BlogBundle\Controller\EmentaController
-    name_prefix:  api_1_
+    name_prefix:  aspe_

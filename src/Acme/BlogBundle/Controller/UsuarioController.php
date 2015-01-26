@@ -68,7 +68,7 @@ class UsuarioController extends FOSRestController {
 					'_format' => $request->get('_format')
 			);
 	
-			return $this->routeRedirectView('api_1_get_usuario', $routeOptions, Codes::HTTP_CREATED);
+			return $this->routeRedirectView('aspe_get_usuario', $routeOptions, Codes::HTTP_CREATED);
 	
 		} catch (InvalidFormException $exception) {
 	
@@ -90,7 +90,7 @@ class UsuarioController extends FOSRestController {
 			$routeOptions = array(
 					'_format' => $request->get('_format')
 			);
-			return $this->routeRedirectView('api_1_get_usuarios', $routeOptions, $statusCode);
+			return $this->routeRedirectView('aspe_get_usuarios', $routeOptions, $statusCode);
 		} catch (InvalidFormException $exception) {
 	
 			return $exception->getForm();
@@ -123,7 +123,7 @@ class UsuarioController extends FOSRestController {
 					'_format' => $request->get('_format')
 			);
 	
-			return $this->routeRedirectView('api_1_get_usuario', $routeOptions, $statusCode);
+			return $this->routeRedirectView('aspe_get_usuario', $routeOptions, $statusCode);
 	
 		} catch (InvalidFormException $exception) {
 	
@@ -150,7 +150,7 @@ class UsuarioController extends FOSRestController {
 					'_format' => $request->get('_format')
 			);
 	
-			return $this->routeRedirectView('api_1_get_usuario', $routeOptions, Codes::HTTP_NO_CONTENT);
+			return $this->routeRedirectView('aspe_get_usuario', $routeOptions, Codes::HTTP_NO_CONTENT);
 	
 		} catch (InvalidFormException $exception) {
 	

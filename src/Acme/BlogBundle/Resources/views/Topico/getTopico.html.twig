@@ -1,5 +1,5 @@
 <h1>Topico: {{ topico.nome }}</h1>
     <p>
-[<a href="{{ path('api_1_edit_topico', {'codigo': topico.codigo}) }}">{{ 'Edit'|trans({}, 'AcmeBlogBundle') }}</a>]
-[<a href="{{ path('api_1_delete_topico', {'codigo': topico.codigo}) }}">{{ 'Delete'|trans({}, 'AcmeBlogBundle') }}</a>]
-[<a href="{{ path('api_1_get_topicos') }}">{{ 'Back'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('aspe_edit_topico', {'codigo': topico.codigo}) }}">{{ 'Edit'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('aspe_delete_topico', {'codigo': topico.codigo}) }}">{{ 'Delete'|trans({}, 'AcmeBlogBundle') }}</a>]
+[<a href="{{ path('aspe_get_topicos') }}">{{ 'Back'|trans({}, 'AcmeBlogBundle') }}</a>]

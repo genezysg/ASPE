@@ -1,7 +1,7 @@
 {% block content %}
     <h1>Edição de Curso</h1>
     {%  if (form is not null) %}
-    <form action="{{ url('api_1_post_curso', {'codigo': codigo}) }}" method="POST" {{ form_enctype(form) }}>
+    <form action="{{ url('aspe_post_curso', {'codigo': codigo}) }}" method="POST" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <input type="submit" value="submit">
     </form>
