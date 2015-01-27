@@ -57,6 +57,11 @@ class Disciplina implements DisciplinaInterface
 		return $this->topicos;
 	}
 	
+	public function setTopicos($topicos) {
+		$this->topicos = $topicos;
+		return $this;
+	}
+	
 	public function __toString() {
 		return $this->nome;
 	}

@@ -60,4 +60,8 @@ class Ementa implements EmentaInterface
 	public function setIndice($indice) {
 		$this->indice = $indice;
 	}
+	
+	public function __toString() {
+		return $this->disciplina." - ".$this->topico;
+	}
 }
