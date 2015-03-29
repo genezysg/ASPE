@@ -9,6 +9,16 @@ This document will be updated to list important BC breaks and behavioral changes
    View::createRouteRedirect instead. Note: the default status code for a route redirect
    has changed from HTTP_CREATED (201) to HTTP_FOUND (302).
 
+### upgrading from 1.5.*
+
+  * Dropped support for Symfony 2.2 (which includes dropping support for "pattern" in favor of only supporting "path" in routes), see https://github.com/FriendsOfSymfony/FOSRestBundle/pull/952
+  * Dropped support for SensioFrameworkExtraBundle 2.x, see https://github.com/FriendsOfSymfony/FOSRestBundle/pull/952
+
+### upgrading from 1.4.*
+
+  * In JsonToFormDecoder prefer to transform false data to null, see https://github.com/FriendsOfSymfony/FOSRestBundle/pull/883
+  * Routing name is no longer appended to generic route name, see https://github.com/FriendsOfSymfony/FOSRestBundle/pull/879
+
 ### upgrading from 1.3.*
 
  * [`ViewHandler::getSerializationContext`](https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/View/ViewHandler.php) is now a `protected` method instead of `public`.

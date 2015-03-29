@@ -3,6 +3,24 @@ acme_blogs:
     prefix: /api
     resource: "@AcmeBlogBundle/Resources/config/routes.yml"
 
+#users:
+#    type: rest
+#    prefix: /api/user
+#    resource: "@UserBundle/Resources/config/routes.yml"
+
+questions:
+    type: rest
+    prefix: /api/question
+    resource: "@QuestionBundle/Resources/config/routes.yml"
+    
+tests:
+    type: rest
+    prefix: /api/test
+    resource: "@TestBundle/Resources/config/routes.yml"
+
+front:    
+    resource: "@FrontBundle/Resources/config/routes.yml"
+
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc

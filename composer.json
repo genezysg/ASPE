@@ -22,7 +22,9 @@
         "friendsofsymfony/rest-bundle": "@dev",
         "jms/serializer-bundle": "@dev",
         "willdurand/rest-extra-bundle": "@dev",
-        "nelmio/api-doc-bundle": "@dev"
+        "nelmio/api-doc-bundle": "@dev",
+        "braincrafted/bootstrap-bundle": "~2.0",
+        "twitter/bootstrap": "3.2.*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "dev-master",
@@ -60,4 +62,5 @@
             "dev-master": "2.3-dev"
         }
     }
+    
 }

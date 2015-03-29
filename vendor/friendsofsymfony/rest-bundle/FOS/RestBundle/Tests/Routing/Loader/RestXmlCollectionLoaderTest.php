@@ -34,10 +34,11 @@ class RestXmlCollectionLoaderTest extends LoaderTest
 
         foreach ($etalonRoutes as $name => $params) {
             $route = $collection->get($name);
+            $methods = $route->getMethods();
 
             $this->assertNotNull($route, $name);
-            $this->assertEquals($params['pattern'], $route->getPattern(), $name);
-            $this->assertEquals($params['method'], $route->getRequirement('_method'), $name);
+            $this->assertEquals($params['path'], $route->getPath(), $name);
+            $this->assertEquals($params['method'], $methods[0], $name);
             $this->assertContains($params['controller'], $route->getDefault('_controller'), $name);
         }
     }
@@ -52,10 +53,11 @@ class RestXmlCollectionLoaderTest extends LoaderTest
 
         foreach ($etalonRoutes as $name => $params) {
             $route = $collection->get($name);
+            $methods = $route->getMethods();
 
             $this->assertNotNull($route, $name);
-            $this->assertEquals($params['pattern'], $route->getPattern(), $name);
-            $this->assertEquals($params['method'], $route->getRequirement('_method'), $name);
+            $this->assertEquals($params['path'], $route->getPath(), $name);
+            $this->assertEquals($params['method'], $methods[0], $name);
             $this->assertContains($params['controller'], $route->getDefault('_controller'), $name);
         }
     }
@@ -109,21 +111,14 @@ class RestXmlCollectionLoaderTest extends LoaderTest
         $this->assertEquals('xml', $route->getDefault('_format'));
     }
 
-    public function testForwardOptions()
+    public function testForwardOptionsRequirementsAndDefaults()
     {
-        $collection = $this->loadFromXmlCollectionFixture(
-            'routes_with_options.xml',
-            true,
-            array(
-                'json' => false,
-                'xml'  => false,
-                'html' => true,
-            ),
-            'xml'
-        );
+        $collection = $this->loadFromXmlCollectionFixture('routes_with_options_requirements_and_defaults.xml');
 
         foreach ($collection as $route) {
             $this->assertTrue('true' === $route->getOption('expose'));
+            $this->assertEquals('[a-z]+', $route->getRequirement('slug'));
+            $this->assertEquals('home', $route->getDefault('slug'));
         }
     }
     /**
